@@ -11,7 +11,6 @@ import warnings
 warnings.filterwarnings("ignore")
 import sys
 # sys.stdout = open('log.txt', 'w')
-# python搜索模块路径设置
 sys.path.append('/Users/DELL/Desktop/CECL-Torch/model/general_recommender/')
 
 def _set_random_seed(seed=2020):
