@@ -3,11 +3,9 @@ import numpy as np
 
 
 def get_user_params(file_path):
-    # 读取文件内容
     with open(file_path, 'r') as f:
         lines = f.readlines()
 
-    # 获取最大userid和category的种类个数
     max_userid = 0
     categories = set()
     for line in lines:
@@ -19,10 +17,8 @@ def get_user_params(file_path):
     num_categories = len(categories)
     # num_categories = 9040
 
-    # 构建参数矩阵
     params = np.zeros((max_userid + 1, num_categories))
 
-    # 填充参数矩阵
     for line in lines:
         items = line.strip().split(' ')
         userid = int(items[0])
@@ -38,11 +34,9 @@ def get_user_params(file_path):
 
 
 def get_item_params(file_path):
-    # 读取文件内容
     with open(file_path, 'r') as f:
         lines = f.readlines()
 
-    # 获取最大itemid和category的种类个数
     max_itemid = 0
     categories = set()
     for line in lines:
@@ -54,10 +48,8 @@ def get_item_params(file_path):
     num_categories = len(categories)
     # num_categories = 9040
 
-    # 构建参数矩阵
     params = np.zeros((max_itemid + 1, num_categories))
 
-    # 填充参数矩阵
     for line in lines:
         items = line.strip().split(' ')
         itemid = int(items[0])
