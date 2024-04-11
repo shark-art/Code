@@ -22,7 +22,7 @@ Otherwise, the evaluator of python implementation will be called.
 
 **Secondly**, change the value of variable *root_dir* and *data_dir* in *main.py*, then specify dataset and recommender in configuration file *NeuRec.ini*.
 
-Model specific hyperparameters are in configuration file *./conf/SGL.ini*.
+Model specific hyperparameters are in configuration file *./conf/CECL.ini*.
 
 ```bash
 python main.py --recommender=SGL --dataset=movie --aug_type=ED --reg=1e-4 --n_layers=3 --ssl_reg=0.1 --ssl_ratio=0.1 --ssl_temp=0.2
