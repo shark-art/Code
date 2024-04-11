@@ -24,18 +24,6 @@ Otherwise, the evaluator of python implementation will be called.
 
 Model specific hyperparameters are in configuration file *./conf/SGL.ini*.
 
-
-### yelp2018 dataset
 ```bash
-python main.py --recommender=SGL --dataset=yelp2018 --aug_type=ED --reg=1e-4 --n_layers=3 --ssl_reg=0.1 --ssl_ratio=0.1 --ssl_temp=0.2
-```
-
-### amazon-book dataset
-```bash
-python main.py --recommender=SGL --dataset=amazon-book --aug_type=ED --reg=1e-4 --n_layers=3 --ssl_reg=0.5 --ssl_ratio=0.1 --ssl_temp=0.2
-```
-
-### ifashion dataset
-```bash
-python main.py --recommender=SGL --dataset=ifashion --aug_type=ED --reg=1e-3 --n_layers=3 --ssl_reg=0.02 --ssl_ratio=0.4 --ssl_temp=0.5
+python main.py --recommender=SGL --dataset=movie --aug_type=ED --reg=1e-4 --n_layers=3 --ssl_reg=0.1 --ssl_ratio=0.1 --ssl_temp=0.2
 ```
