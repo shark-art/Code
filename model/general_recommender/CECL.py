@@ -18,7 +18,6 @@ from reckit import randint_choice
 from get_params import get_user_params, get_item_params
 import sys
 
-# python搜索模块路径设置
 sys.path.append('/Users/DELL/Desktop/CECL-Torch/model/general_recommender/')
 
 class _LightGCN(nn.Module):
@@ -52,8 +51,6 @@ class _LightGCN(nn.Module):
             # init(self.user_embeddings.weight)
             # init(self.item_embeddings.weight)
 
-            # # #--- * 添加代码 *---
-            # 定义一个随机的embedding向量
             random_embedding = torch.randn(19, self.embed_dim) # movie
             # random_embedding = torch.randn(9749, self.embed_dim) # music
             # random_embedding = torch.randn(68, self.embed_dim) # clothing
@@ -63,34 +60,28 @@ class _LightGCN(nn.Module):
             # random_embedding = torch.randn(104, self.embed_dim)  # beeradvocate
             # random_embedding = torch.randn(89, self.embed_dim)  # beer
 
-            # 加载user_category.txt和item_category.txt中的固定参数
             user_params = torch.from_numpy(get_user_params('dataset/movie/user_category.txt')).float()
             item_params = torch.from_numpy(get_item_params('dataset/movie/item_category.txt')).float()
 
-            # 创建新的可学习的参数矩阵
             user_params_learnable = torch.zeros_like(user_params)
             item_params_learnable = torch.zeros_like(item_params)
 
-            # 遍历user_params和item_params，判断是否为0，并设置对应位置的参数值
             for i in range(user_params.shape[0]):
                 for j in range(user_params.shape[1]):
                     if user_params[i][j] != 0:
-                        user_params_learnable[i][j] = torch.nn.Parameter(torch.tensor(0.1))  # 设置为学习的可训练参数
+                        user_params_learnable[i][j] = torch.nn.Parameter(torch.tensor(0.1))
 
             for i in range(item_params.shape[0]):
                 for j in range(item_params.shape[1]):
                     if item_params[i][j] != 0:
-                        item_params_learnable[i][j] = torch.nn.Parameter(torch.tensor(0.1))  # 设置为学习的可训练参数
+                        item_params_learnable[i][j] = torch.nn.Parameter(torch.tensor(0.1)) 
 
-            # 将user_params_learnable和item_params_learnable与random_embedding相乘，得到新的可学习的参数矩阵
             user_params_learnable = user_params_learnable.mm(random_embedding)
             item_params_learnable = item_params_learnable.mm(random_embedding)
 
-            # 将新的可学习的参数矩阵赋值给self.user_embeddings.weight.data和self.item_embeddings.weight.data
             self.user_embeddings.weight.data.copy_(user_params_learnable.float())
             self.item_embeddings.weight.data.copy_(item_params_learnable.float())
 
-            # 设置可学习的参数矩阵为模型的可学习参数
             self.user_embeddings.weight.requires_grad = True
             self.item_embeddings.weight.requires_grad = True
 
